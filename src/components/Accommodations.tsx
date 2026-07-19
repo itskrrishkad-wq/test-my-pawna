@@ -161,6 +161,89 @@ const accommodations = [
     description:
       "Stylish triangle tents with a serene lake view, designed for couples who want added comfort and a cozy, romantic escape.",
   },
+  {
+    id: 4,
+    name: "Triangle Cabin",
+    category: "cabin",
+    images: [
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-1.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-[68%_78%]",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-2.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-cover object-[38%_48%]",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-3.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-[68%_78%]",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-4.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-center",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-5.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-center",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-6.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-cover object-[55%_65%]",
+      },
+      {
+        url: "/images/accommodations/triangle-cabin/triangle-cabin-7.webp",
+        alt: "Triangle Cabin",
+        imageClassName: "object-cover object-center",
+      },
+    ],
+    price: 2000,
+    beforePrice: 2499,
+    guests: 2,
+    amenitiesHtml: (
+      <div className="mb-6 space-y-3">
+        <div className="bg-emerald-50/60 p-3 rounded-xl">
+          <h4 className="font-semibold text-forest-700 mb-1 text-sm">
+            🏕 Stay Includes
+          </h4>
+          <p className="text-xs text-slate-600">
+            Triangle Cabin • Mattress • Blanket • Pillow • Fan • Light •
+            Mobile Charging Point
+          </p>
+        </div>
+        <div className="bg-amber-50/60 p-3 rounded-xl">
+          <h4 className="font-semibold text-forest-700 mb-1 text-sm">
+            🍽 Food Menu
+          </h4>
+          <p className="text-xs text-slate-600">
+            Tea & Pakoda/Misal • BBQ (Paneer/Chicken) • Dinner (Veg/Non-Veg) •
+            Breakfast • Mineral Water
+          </p>
+        </div>
+        <div className="bg-blue-50/60 p-3 rounded-xl">
+          <h4 className="font-semibold text-forest-700 mb-1 text-sm">
+            🎉 Activities
+          </h4>
+          <p className="text-xs text-slate-600">
+            DJ Music • Indoor & Outdoor Games • Bonfire • Boating/Kayaking
+            (Extra) • Live Music (Sat) • Free Parking
+          </p>
+        </div>
+        <div className="text-xs text-slate-700 space-y-1 pl-1">
+          <p>✅ Tasty Homely Food</p>
+          <p>✅ Peaceful Lakeside Vibes</p>
+        </div>
+      </div>
+    ),
+
+    description:
+      "Stylish triangle cabins with a serene lake view, designed for couples who want added comfort and a cozy, romantic escape.",
+  },
 
   {
     id: 3,
@@ -246,6 +329,8 @@ const accommodations = [
     description:
       "Luxurious lake-touch cottages designed for couples and families, offering a private getaway with elegant interiors and modern amenities.",
   },
+
+
 ];
 
 const Accommodations = () => {
@@ -288,9 +373,8 @@ const Accommodations = () => {
                             height={0}
                             unoptimized
                             loading="lazy"
-                            alt={`${accommodation.name} - Image ${
-                              imageIndex + 1
-                            }`}
+                            alt={`${accommodation.name} - Image ${imageIndex + 1
+                              }`}
                             className={cn(
                               "w-full h-64 object-cover object-center group-hover:scale-105 transition-transform duration-700",
                               image.imageClassName,
@@ -320,21 +404,19 @@ const Accommodations = () => {
 
                 {/* Price Badge */}
                 <div className="absolute top-4 right-4 z-10">
-                  {index !== 2 ? (
-                    <Badge className="bg-moss text-white px-3 py-1 text-sm font-semibold backdrop-blur-sm">
-                      <>
-                        ₹{accommodation.price}/person{" "}
-                        <span className="text-xs text-white line-through">
-                          ₹{accommodation.beforePrice}/per
-                        </span>
-                      </>
-                    </Badge>
-                  ) : (
-                    <Badge>Booked</Badge>
-                  )}
+                  {accommodation.name !== "Deluxe Cottages" && <Badge className="bg-moss text-white px-3 py-1 text-sm font-semibold backdrop-blur-sm">
+                    <>
+                      ₹{accommodation.price}/person{" "}
+                      <span className="text-xs text-white line-through">
+                        ₹{accommodation.beforePrice}/per
+                      </span>
+                    </>
+                  </Badge>}
+
+                  {accommodation.name === "Deluxe Cottages" && <Badge>Booked</Badge>}
                 </div>
                 <div className="absolute top-12 right-4 z-10">
-                  {index !== 2 ? (
+                  {accommodation.name === "Triangle Tent" && (
                     <Badge className="bg-transparent text-white px-3 py-1 text-sm font-semibold backdrop-blur-sm">
                       <>
                         ₹1200/person{" "}
@@ -344,8 +426,6 @@ const Accommodations = () => {
                         <span className="text-xs">Without electricity</span>
                       </>
                     </Badge>
-                  ) : (
-                    <Badge>Booked</Badge>
                   )}
                 </div>
 
@@ -361,7 +441,7 @@ const Accommodations = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              < div className="p-6" >
                 <h3 className="font-playfair text-2xl font-semibold text-[var(--forest-700)] mb-2">
                   {accommodation.name}
                 </h3>
@@ -436,7 +516,7 @@ const Accommodations = () => {
                   </div>
                 </div> */}
 
-                <>{accommodation.amenitiesHtml}</>
+                <> {accommodation.amenitiesHtml}</>
 
                 {/* CTA Button */}
                 <Button
@@ -464,8 +544,9 @@ const Accommodations = () => {
                 </Button>
               </div>
             </div>
-          ))}
-        </div>
+          ))
+          }
+        </div >
 
         {/* Bottom CTA */}
         {/* <div className="text-center mt-12 sm:mt-16">
@@ -476,8 +557,8 @@ const Accommodations = () => {
             See All Accommodations
           </Button>
         </div> */}
-      </div>
-    </section>
+      </div >
+    </section >
   );
 };
 

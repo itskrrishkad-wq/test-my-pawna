@@ -44,6 +44,6 @@ async function walkDirectory(dir) {
 
 (async () => {
   console.log("🔍 Scanning directories and converting images to WebP...");
-  await walkDirectory("./thumbnails");
+  await walkDirectory("./");
   console.log("✅ Conversion complete!");
 })();

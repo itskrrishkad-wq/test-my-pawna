@@ -46,6 +46,21 @@ const packages = [
       "A stylish and cozy triangle tent with a serene lakeside view, ideal for couples who want a comfortable and romantic nature escape.",
   },
   {
+    name: "Triangle Cabin Stay",
+    price: "₹2000",
+    amount: 2000,
+    originalPrice: "₹2499",
+    savings: "₹499",
+    includes: [
+      "Stylish triangle cabin stay",
+      "Warm lighting & cozy interiors",
+      "Suitable for 2 guests",
+      "Perfect for couples seeking comfort",
+    ],
+    description:
+      "A stylish and cozy triangle cabin with a serene lakeside view, ideal for couples who want a comfortable and romantic nature escape.",
+  },
+  {
     name: "Deluxe Cottage Experience",
     price: "₹2999",
     amount: 2999,
@@ -167,11 +182,10 @@ ${calculatedAmount}
             {packages.map((pkg, index) => (
               <Card
                 key={index}
-                className={`w-full cursor-pointer transition-all duration-300 rounded-3xl border-2 hover:shadow-xl p-0 ${
-                  selectedPackage.name === pkg.name
-                    ? "border-moss bg-[#4caf50]/5 shadow-lg scale-105"
-                    : "border-gray-200 hover:border-moss/50"
-                }`}
+                className={`w-full cursor-pointer transition-all duration-300 rounded-3xl border-2 hover:shadow-xl p-0 ${selectedPackage.name === pkg.name
+                  ? "border-moss bg-[#4caf50]/5 shadow-lg scale-105"
+                  : "border-gray-200 hover:border-moss/50"
+                  }`}
                 onClick={() => setSelectedPackage(pkg)}
               >
                 <CardContent className="p-6">
@@ -180,7 +194,7 @@ ${calculatedAmount}
                       <h4 className="text-xl font-playfair font-bold text-stone">
                         {pkg.name}
                       </h4>
-                      {index !== 2 && (
+                      {index !== 3 && (
                         <div className="flex items-center space-x-2 mt-2">
                           <Gift className="w-4 h-4 text-coral" />
                           <span className="text-coral font-semibold">
@@ -189,7 +203,7 @@ ${calculatedAmount}
                         </div>
                       )}
                     </div>
-                    {index !== 2 ? (
+                    {index !== 3 ? (
                       <div className="text-right">
                         <div className="text-xl sm:text-2xl font-bold text-moss">
                           {pkg.price}/per
@@ -298,7 +312,16 @@ ${calculatedAmount}
                       <Calendar
                         mode="single"
                         selected={checkIn}
-                        onSelect={setCheckIn}
+                        onSelect={(date) => {
+                          if (!date) return;
+
+                          setCheckIn(date);
+
+                          const nextDay = new Date(date);
+                          nextDay.setDate(nextDay.getDate() + 1);
+
+                          setCheckOut(nextDay);
+                        }}
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         disabled={(date: any) => {
                           const today = new Date();
@@ -319,7 +342,7 @@ ${calculatedAmount}
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
-                        className="w-full justify-start text-left font-normal rounded-2xl h-12 border-2 hover:border-moss"
+                        className="w-full justify-start text-left font-normal rounded-2xl h-12 border-2 hover:border-moss pointer-events-none"
                       >
                         <CalendarDays className="mr-2 h-4 w-4 text-moss" />
                         {checkOut
