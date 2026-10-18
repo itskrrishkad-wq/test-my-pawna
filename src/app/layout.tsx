@@ -159,7 +159,27 @@ export default function RootLayout({
           content={cn(
             `${process.env.NEXT_PUBLIC_BASE_URL}/images/accommodations/delux/delux-1.webp`,
           )}
+        /> {/* Google Ads tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16673264298"
+          strategy="afterInteractive"
         />
+
+        <Script
+          id="google-ads-tag"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){window.dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'AW-16673264298');
+            `,
+          }}
+        />
+
+
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
