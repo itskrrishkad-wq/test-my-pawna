@@ -226,6 +226,14 @@ export default function RootLayout({
             gtag('config', 'AW-16673264298');
           `}
         </Script>
+
+        <Script id="phone-conversion" strategy="afterInteractive">
+          {`
+            gtag('config', 'AW-16673264298/PqQgCPL_nLwdEKqlt44-', {
+              'phone_conversion_number': '+91 9373526309'
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
