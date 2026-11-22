@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(base),
 
   title: {
-    default: "Pawna Lake Camping | Comfy Tents & Lakeside Experience",
+    default: "Pawna Lake Tent Camping – Starting at Just ₹799",
     template: "%s | Pawna Lake Camping",
   },
 
